@@ -20,3 +20,21 @@
 .App-link {
   color: #09d3ac;
 }
+
+.card a {
+  color: rgb(66, 66, 66);
+  text-decoration: none;
+}
+
+/* .ProductPics {
+  border: 1px solid red;
+}
+.ProductText {
+  border: 1px solid red;
+} */
+
+.PurchaseQtyInput {
+  width: 30%;
+  outline: none;
+  font-style: italic;
+}

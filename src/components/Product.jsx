@@ -1,66 +1,32 @@
-import React, { useState, useEffect } from 'react'
-import { ContentfulClient } from './ContentfulClient'
-import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement } from './actions';
-import { PURGE } from 'redux-persist';
+import React from 'react'
+import { useSelector } from 'react-redux';
+import PageBanner from './PageBanner';
+import Carousel from './Carousel';
+import UpdateUnits from './UpdateUnits';
 
 export default function Product({ match }) {
     const itemID = match.params.id
-
-    let [product, setProduct] = useState({})
-
-    useEffect(() => {
-        ContentfulClient.getEntry(itemID)
-            .then(item => {
-                setProduct(item.fields)
-                return item;
-            })
-    }, [itemID])
-
-    const cart = useSelector(state => state.cart)
-    const dispatch = useDispatch();
-
+    const product = useSelector(state => state.products[itemID])
 
     return (
-        <div>
-            <h1>A Single Product</h1>
-            <p>ID is {itemID}</p>
-
-
-            <h2 className="card-title text-muted text-uppercase text-center">{product.name}</h2>
-            <p>Price: ${product.price}</p>
-            <p>Discount: {product.discount}%</p>
-            <p>Qty: {product.quantity}</p>
-            <p>Category: {product.category}</p>
-            <p>Subcategory: {product.subcategory}</p>
-            {product.pictures ?
-                product.pictures.map(pic => (
-                    <img src={`https://` + pic.fields.file.url} alt={pic.fields.description} width="150" />
-                ))
-                : console.log(`Product pic not found.`)}
-
-            {/* <p>{cart}</p> */}
-
-            <button
-                onClick={() => {
-                    let pickedProduct = {}
-                    pickedProduct[itemID] = product
-                    dispatch(increment(pickedProduct))
-                }}>+</button>
-            <button
-                onClick={() => {
-                    let pickedProduct = {}
-                    pickedProduct[itemID] = product
-                    dispatch(decrement(pickedProduct))
-                }}>-</button>
-            <button
-                onClick={() =>
-                    dispatch({
-                        type: PURGE,
-                        key: "root",
-                        result: () => null  // Func expected on the submitted action. 
-                    })
-                }>purge</button>
+        <div key={itemID} className="ProductInfo">
+            <PageBanner title={product.name} />
+            <div className="ProductInfoRow row">
+                <div className="ProductPics col-sm-6 col-12">
+                    <Carousel pics={product.pics} />
+                </div>
+                <div className="ProductText d-flex flex-column col-sm-6 col-12 px-4">
+                    <div className="ProductText mt-3 mt-sm-0 mb-4">
+                        <p className="text-muted text-sm-left text-center">{product.description}</p>
+                        <p className="text-muted text-sm-left text-center">Price: ${product.price}</p>
+                        {product.discount ? <p className="text-muted text-sm-left text-center">Discount: {product.discount}%</p> : console.log("No discount.")}
+                        <p className="text-muted text-sm-left text-center">Stock: {product.stock}</p>
+                        <p className="text-muted text-sm-left text-center">Category: {product.category}</p>
+                        <p className="text-muted text-sm-left text-center">Subcategory: {product.subcategory}</p>
+                    </div>
+                    <UpdateUnits itemID={itemID} product={product} />
+                </div>
+            </div >
         </div >
     )
 }

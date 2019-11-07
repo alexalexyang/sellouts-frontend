@@ -1,13 +1,13 @@
-export const increment = (product) => {
+export const updatePurchaseQty = (product) => {
     return {
-        type: 'INCREMENT',
+        type: 'UPDATE_PURCHASEQTY',
         payload: product
     }
 }
 
-export const decrement = (price) => {
+export const getProducts = (products) => {
     return {
-        type: 'DECREMENT',
-        payload: price
+        type: 'GET_PRODUCTS',
+        payload: products
     }
 }

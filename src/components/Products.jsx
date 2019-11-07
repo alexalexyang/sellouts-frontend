@@ -1,45 +1,45 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { ContentfulClient } from './ContentfulClient'
+import PageBanner from './PageBanner'
+import GetProducts from './GetProducts'
+import { useSelector } from 'react-redux';
 require('dotenv').config()
 
 export default function Products() {
+    GetProducts()
 
-    let [products, setProducts] = useState([])
-
-    useEffect(() => {
-        ContentfulClient.getEntries({
-            content_type: "products"
-        }).then(({ items }) => {
-            setProducts(items)
-            return items;
-        })
-    }, [])
+    const products = useSelector(state => state.products);
+    let prodKeys = Object.keys(products)
 
     return (
-        <div className="container">
-            <h1>Products</h1>
-
-            <div className="row">
-                {products.map(product => (
-                    <Link to={`/product/${product.sys.id}`}>
-                        <div className="card" key={product.sys.id}>
-                            <h2 className="card-title text-muted text-uppercase text-center">{product.fields.name}</h2>
-                            <p>Price: ${product.fields.price}</p>
-                            <p>Discount: {product.fields.discount}%</p>
-                            <p>Qty: {product.fields.quantity}</p>
-                            <p>Category: {product.fields.category}</p>
-                            <p>Subcategory: {product.fields.subcategory}</p>
-                            {product.fields.pictures ?
-                                product.fields.pictures.map(pic => (
-                                    <img src={`https://` + pic.fields.file.url} alt={pic.fields.description} width="150" />
-                                ))
-                                : console.log(false)}
+        <div className="">
+            <PageBanner title="Products" caption="Such great products." />
+            <div className="Products container-fluid">
+                <div className="d-flex align-content-stretch justify-content-center flex-column flex-md-row">
+                    {prodKeys.map(prodKey => (
+                        <div className="ProductCard card w-100 mx-0 my-0 mx-sm-4 my-sm-2" key={products[prodKey].id}>
+                            <Link to={`/product/${prodKey}`}>
+                                {products[prodKey].pics.length > 0 ?
+                                    <img className="card-img-top"
+                                        src={`https://` + products[prodKey].pics[0].url}
+                                        alt={products[prodKey].pics[0].description}
+                                        key={products[prodKey].pics[0].id}
+                                    />
+                                    : console.log("Product pic not found.")}
+                                <div className="card-body">
+                                    <h2 className="card-title text-muted text-uppercase text-center">{products[prodKey].name}</h2>
+                                    <p className="card-text">Price: ${products[prodKey].price}</p>
+                                    <p className="card-text">Discount: {products[prodKey].discount}%</p>
+                                    <p className="card-text">Qty: {products[prodKey].quantity}</p>
+                                    <p className="card-text">Category: {products[prodKey].category}</p>
+                                    <p className="card-text">Subcategory: {products[prodKey].subcategory}</p>
+                                </div>
+                            </Link>
                         </div>
-                    </Link>
-                ))}
-            </div>
+                    ))}
+                </div>
 
+            </div>
         </div>
     )
 }
