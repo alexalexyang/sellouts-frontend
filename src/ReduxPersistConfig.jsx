@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import allReducers from './components/reducers';
+import allReducers from './components/StateHandlers/reducers';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 

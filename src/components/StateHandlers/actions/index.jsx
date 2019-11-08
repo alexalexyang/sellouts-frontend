@@ -24,3 +24,10 @@ export const clearCart = () => {
         type: 'CLEAR_CART'
     }
 }
+
+export const updateCartTotal = (total) => {
+    return {
+        type: 'UPDATE_CART_TOTAL',
+        payload: total
+    }
+}

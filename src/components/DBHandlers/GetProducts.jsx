@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { getProducts } from './actions';
+import { getProducts } from '../StateHandlers/actions';
 import { ContentfulClient } from './ContentfulClient'
 
 export default function GetProducts() {

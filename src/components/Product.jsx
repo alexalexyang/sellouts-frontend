@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import PageBanner from './PageBanner';
-import Carousel from './Carousel';
+import PageBanner from './Partials/PageBanner';
+import Carousel from './Partials/Carousel';
 import UpdateUnits from './UpdateUnits';
 
 export default function Product({ match }) {

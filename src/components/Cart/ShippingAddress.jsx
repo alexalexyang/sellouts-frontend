@@ -1,21 +1,19 @@
 import React, { useState } from 'react'
+import { withRouter } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { getAddress } from './actions';
+import { getAddress } from '../StateHandlers/actions';
 
-export default function ShippingAddress() {
-    // const shippingAddress = useSelector(state => state.shippingAddress)
+function ShippingAddress(props) {
     const dispatch = useDispatch();
     const [address, setAddress] = useState({})
-
     const handleChange = (e) => {
-        // console.log(e.target.name, e.target.value)
         setAddress({ ...address, [e.target.name]: e.target.value })
-        dispatch(getAddress({ ...address, [e.target.name]: e.target.value }))
     }
 
     const onSubmit = (e) => {
         e.preventDefault()
-        // console.log(address)
+        dispatch(getAddress(address))
+        props.history.replace('/payment')
     }
 
     return (
@@ -114,7 +112,10 @@ export default function ShippingAddress() {
                         </tr>
                     </tbody>
                 </table>
+                <input type="submit" value="Submit" />
             </form>
         </div>
     )
 }
+
+export default withRouter(ShippingAddress)

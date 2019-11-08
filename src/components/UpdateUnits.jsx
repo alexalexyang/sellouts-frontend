@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { updatePurchaseQty } from './actions';
+import { updatePurchaseQty } from './StateHandlers/actions';
 
 export default function UpdateUnits({ itemID, product }) {
     const dispatch = useDispatch();

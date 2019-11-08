@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import PageBanner from './PageBanner'
-import GetProducts from './GetProducts'
+import PageBanner from './Partials/PageBanner'
+import GetProducts from './DBHandlers/GetProducts'
 import { useSelector } from 'react-redux';
 require('dotenv').config()
 

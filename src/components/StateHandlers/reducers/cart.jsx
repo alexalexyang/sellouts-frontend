@@ -17,6 +17,19 @@ export const cart = (state = {}, action) => {
         case PURGE:
             console.log("PURGING!");
             return {}
+
+        default:
+            return state;
+    }
+}
+
+export const cartTotal = (state = 0, action) => {
+    switch (action.type) {
+        case 'UPDATE_CART_TOTAL':
+            return action.payload
+        case PURGE:
+            console.log("PURGING!");
+            return {}
         default:
             return state;
     }
