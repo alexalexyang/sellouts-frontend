@@ -1,4 +1,4 @@
-export const paypalButtons = (total, paidFor, setPaidFor) => {
+export const PaypalButtons = (total, setPaidFor) => {
     window.paypal.Buttons({
         createOrder: function (data, actions) {
             return actions.order.create({

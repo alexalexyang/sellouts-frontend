@@ -17,7 +17,7 @@ export default function Products() {
             <div className="Products container-fluid">
                 <div className="d-flex align-content-stretch justify-content-center flex-column flex-md-row">
                     {prodKeys.map(prodKey => (
-                        <div className="ProductCard card w-100 mx-0 my-0 mx-sm-4 my-sm-2" key={products[prodKey].id}>
+                        <div className="ProductCard card w-100 mx-0 my-0 mx-sm-4 my-sm-2" key={prodKey}>
                             <Link to={`/product/${prodKey}`}>
                                 {products[prodKey].pics.length > 0 ?
                                     <img className="card-img-top"

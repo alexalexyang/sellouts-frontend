@@ -24,6 +24,7 @@ export default function GetProducts() {
                                 url: pic.fields.file.url
                             }
                             pics.push(onePic)
+                            return onePic
                         })
                         :
                         pics.push()
@@ -39,6 +40,7 @@ export default function GetProducts() {
                         pics: pics
                     }
                     products[item.sys.id] = product
+                    return products
                 })
                 dispatch(getProducts(products))
                 return products

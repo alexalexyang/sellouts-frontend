@@ -7,6 +7,7 @@ import Cart from './components/Cart';
 import Products from './components/Products';
 import Product from './components/Product';
 import Footer from './components/Footer';
+import ShippingAddress from './components/ShippingAddress';
 
 function App() {
 
@@ -19,8 +20,10 @@ function App() {
           <Route path='/products' exact component={Products} />
           <Route path='/cart' component={Cart} />
           <Route path='/product/:id' component={Product} />
+          <Route path='/address' component={ShippingAddress} />
         </Switch>
-        <Link to='/products'>Products</Link>
+        <p><Link to='/products'>Products</Link></p>
+        <p><Link to='/address'>address</Link></p>
 
         <Footer />
       </div>

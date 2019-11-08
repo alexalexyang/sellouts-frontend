@@ -11,6 +11,9 @@ export const cart = (state = {}, action) => {
             }
             return newState
 
+        case 'CLEAR_CART':
+            return {}
+
         case PURGE:
             console.log("PURGING!");
             return {}
