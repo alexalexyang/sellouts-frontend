@@ -6,7 +6,7 @@ import { ContentfulClient } from '../../DBHandlers/ContentfulClient'
 import Carousel from '../Partials/Carousel'
 import UpdateUnits from '../UpdateUnits'
 
-function CartProducts(props) {
+function Cart(props) {
     const dispatch = useDispatch();
 
     const cart = useSelector(state => state.cart);
@@ -80,10 +80,10 @@ function CartProducts(props) {
 
             <button onClick={() => {
                 saveTotal(total)
-                props.history.replace('/shipping')
+                props.history.replace('/cart/shipping')
             }}>Go to payment</button>
         </div>
     )
 }
 
-export default withRouter(CartProducts)
+export default withRouter(Cart)

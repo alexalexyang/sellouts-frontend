@@ -13,7 +13,7 @@ function ShippingAddress(props) {
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(getAddress(address))
-        props.history.replace('/payment')
+        props.history.replace('/cart/payment')
     }
 
     return (

@@ -53,6 +53,16 @@ EmailJS
 Paypal
 - [Merchant fees](https://www.paypal.com/us/webapps/mpp/merchant-fees)
 
+# Required links
+
+These links are required in the Contentful space:
+- /
+- /products
+- /product/:id, 
+- /cart
+- /cart/shipping
+- /cart/payment
+- /cart/success
 
 # Learning resources
 
