@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { updateCartTotal } from '../StateHandlers/actions'
-import { ContentfulClient } from '../DBHandlers/ContentfulClient'
+import { updateCartTotal } from '../../StateHandlers/actions'
+import { ContentfulClient } from '../../DBHandlers/ContentfulClient'
 import Carousel from '../Partials/Carousel'
 import UpdateUnits from '../UpdateUnits'
 

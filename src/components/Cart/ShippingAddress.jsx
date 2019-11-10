@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { getAddress } from '../StateHandlers/actions';
+import { getAddress } from '../../StateHandlers/actions';
 
 function ShippingAddress(props) {
     const dispatch = useDispatch();

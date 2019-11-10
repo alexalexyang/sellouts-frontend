@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux'
+import { setLanguage } from '../../StateHandlers/actions'
+import { useGetLanguages } from '../../DBHandlers/Language.jsx'
 
-
-export default function Nav() {
-    // const cart = useSelector(state => state.cart)
+export default function Nav({ language }) {
+    useGetLanguages()
+    const languages = useSelector(state => state.languages)
+    const pages = useSelector(state => state.pages)
+    const dispatch = useDispatch()
 
     return (
         <nav className="navbar navbar-expand-sm navbar-light bg-light">
@@ -20,11 +24,32 @@ export default function Nav() {
             </div>
             <div className="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
                 <ul className="navbar-nav ml-auto flex-nowrap">
-                    <li className="nav-item">
-                        <Link to={`/cart`} className="nav-link m-2 menu-item nav-active">Cart</Link>
-                    </li>
+                    {pages && Object.keys(pages).length > 0
+                        ? pages.map(page => {
+                            if (page.component !== "Home" && page.order !== -1) {
+                                return (<li className="nav-item">
+                                    <Link to={page.url} className="nav-link m-2 menu-item nav-active">{page.title}</Link>
+                                </li>)
+                            }
+                        }) : null}
                 </ul>
             </div>
+
+
+            <div className="btn-group">
+                <button className="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {language}
+                </button>
+                <div className="dropdown-menu">
+                    {languages.map(lang => <button value={lang} className="dropdown-item" onClick={(e) => dispatch(setLanguage(e.target.value))}>{lang}</button>)}
+                </div>
+            </div>
+
+
+
+
+
+
         </nav>
     )
 }

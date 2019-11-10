@@ -31,3 +31,25 @@ export const updateCartTotal = (total) => {
         payload: total
     }
 }
+
+export const getPages = (pages) => {
+    return {
+        type: 'GET_PAGES',
+        payload: pages
+    }
+}
+
+
+export const setLanguage = (language) => {
+    return {
+        type: 'SET_LANGUAGE',
+        payload: language
+    }
+}
+
+export const setLanguages = (languages) => {
+    return {
+        type: 'SET_LANGUAGES',
+        payload: languages
+    }
+}

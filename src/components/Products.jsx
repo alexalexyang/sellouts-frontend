@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PageBanner from './Partials/PageBanner'
-import GetProducts from './DBHandlers/GetProducts'
+import GetProducts from '../DBHandlers/GetProducts'
 import { useSelector } from 'react-redux';
 require('dotenv').config()
 
@@ -25,7 +25,7 @@ export default function Products() {
                                         alt={products[prodKey].pics[0].description}
                                         key={products[prodKey].pics[0].id}
                                     />
-                                    : console.log("Product pic not found.")}
+                                    : <h5 className="NoPic text-muted text-uppercase text-center">No pic found.</h5>}
                                 <div className="card-body">
                                     <h2 className="card-title text-muted text-uppercase text-center">{products[prodKey].name}</h2>
                                     <p className="card-text">Price: ${products[prodKey].price}</p>
