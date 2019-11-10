@@ -10,7 +10,7 @@ Target demographic: people who have very little money but who still want to sell
 
 # Demo
 
-[bean-dev](https://bean-dev.notathoughtexperiment.me)
+[bean-dev](https://bean-dev.notathoughtexperiment.me). Deployed on Netlify.
 
 # Upcoming support
 
@@ -78,3 +78,5 @@ REACT_APP_DEFAULT_LANGUAGE
 # Learning resources
 
 https://fireship.io/lessons/paypal-checkout-frontend/
+
+https://github.com/contentful/rich-text/issues/61
