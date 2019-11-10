@@ -8,13 +8,15 @@ Target demographic: people who have very little money but who still want to sell
 
 3/4 of the way to becoming minimally viable.
 
+# Demo
+
+[bean-dev](https://bean-dev.notathoughtexperiment.me)
+
 # Upcoming support
 
-- Multiple languages
-- Holiday seasons and other special occasions
 - International shipping
+- Holiday seasons and other special occasions
 - Vouchers
-- Pages
 
 # Important dependencies at a glance
 
@@ -25,17 +27,6 @@ Target demographic: people who have very little money but who still want to sell
 - EmailJS
 
 Check package.json for details on all the React ones.
-
-# .env
-
-Requires the following environmental variables:
-
-```
-REACT_APP_BOOTSTRAP
-REACT_APP_SPACE_ID
-REACT_APP_CDA_TOKEN
-REACT_APP_PAYPAL_CLIENT_ID
-```
 
 # Known limits and costs
 
@@ -53,9 +44,24 @@ EmailJS
 Paypal
 - [Merchant fees](https://www.paypal.com/us/webapps/mpp/merchant-fees)
 
-# Required links
+# Required things
 
-These links are required in the Contentful space:
+## Environmental variables
+
+```
+REACT_APP_BOOTSTRAP
+REACT_APP_SPACE_ID
+REACT_APP_CDA_TOKEN
+REACT_APP_PAYPAL_CLIENT_ID
+REACT_APP_DEFAULT_LANGUAGE
+```
+
+## Contentful
+
+### Language
+
+### Pages
+
 - /
 - /products
 - /product/:id, 
@@ -63,6 +69,11 @@ These links are required in the Contentful space:
 - /cart/shipping
 - /cart/payment
 - /cart/success
+
+### Products
+
+- sku
+- component
 
 # Learning resources
 

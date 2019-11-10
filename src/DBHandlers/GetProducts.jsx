@@ -1,14 +1,17 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../StateHandlers/actions';
 import { ContentfulClient } from './ContentfulClient'
 
+
 export default function GetProducts() {
     const dispatch = useDispatch();
+    const language = useSelector(state => state.language)
 
     useEffect(() => {
         ContentfulClient.getEntries({
-            content_type: 'products'
+            content_type: 'products',
+            'fields.language[in]': language,
         })
             .then((response) => {
                 let products = {}
@@ -30,6 +33,7 @@ export default function GetProducts() {
                         pics.push()
 
                     let product = {
+                        sku: item.fields.sku,
                         name: item.fields.name,
                         price: item.fields.price,
                         discount: item.fields.discount,
@@ -46,5 +50,5 @@ export default function GetProducts() {
                 return products
             })
             .catch(console.error)
-    }, [])
+    }, [language])
 }

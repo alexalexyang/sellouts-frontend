@@ -3,10 +3,15 @@ import { withRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateCartTotal } from '../../StateHandlers/actions'
 import { ContentfulClient } from '../../DBHandlers/ContentfulClient'
+import { useGetPageDetails } from '../../DBHandlers/GetPageDetails';
 import Carousel from '../Partials/Carousel'
+import PageBanner from '../Partials/PageBanner';
 import UpdateUnits from '../UpdateUnits'
 
 function Cart(props) {
+    const [pageDetails, setPageDetails] = useState({})
+    useGetPageDetails(props.match.path, setPageDetails)
+
     const dispatch = useDispatch();
 
     const cart = useSelector(state => state.cart);
@@ -39,7 +44,7 @@ function Cart(props) {
 
     return (
         <div className="CartProducts">
-
+            <PageBanner title={pageDetails.bannerTitle} caption={pageDetails.bannerText} />
             {prodKeys.map(key => {
                 if (cart[key].purchaseQty > productStock[key]) {
                     console.log("Too little in store, setting to maximum.")
@@ -60,12 +65,15 @@ function Cart(props) {
                                 <Carousel pics={cart[key].pics} />
                             </div>
                             <div className="CartProductText d-flex flex-column col-sm-6 col-12 px-4">
-                                <div className="ProductText mt-3 mt-sm-0 mb-4">
-                                    <p className="text-muted text-sm-left text-center">{cart[key].name}</p>
-                                    <p className="text-muted text-sm-left text-center">Price: ${cart[key].price}</p>
-                                    {cart[key].discount ? <p className="text-muted text-sm-left text-center">Discount: {cart[key].discount}%</p> : console.log("No discount.")}
-                                    <p className="text-muted text-sm-left text-center">Stock: {cart[key].stock}</p>
-                                </div>
+                                {pageDetails.misc && Object.keys(pageDetails.misc).length > 0 ?
+                                    (
+                                        <div className="ProductText mt-3 mt-sm-0 mb-4">
+                                            <p className="text-muted text-sm-left text-center">{cart[key].name}</p>
+                                            <p className="text-muted text-sm-left text-center">{pageDetails.misc.price}: ${cart[key].price}</p>
+                                            {cart[key].discount ? <p className="text-muted text-sm-left text-center">{pageDetails.misc.discount}: {cart[key].discount}%</p> : null}
+                                            <p className="text-muted text-sm-left text-center">{pageDetails.misc.stock}: {cart[key].stock}</p>
+                                        </div>
+                                    ) : null}
                                 <UpdateUnits itemID={key} product={cart[key]} />
                             </div>
                         </div >

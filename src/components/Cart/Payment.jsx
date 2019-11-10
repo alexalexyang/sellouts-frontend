@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { OnPayment } from './OnPayment'
 import { withRouter } from 'react-router-dom'
+import { useGetPageDetails } from '../../DBHandlers/GetPageDetails';
+import PageBanner from '../Partials/PageBanner';
 
 function Payment(props) {
+    const [pageDetails, setPageDetails] = useState({})
+    useGetPageDetails(props.match.path, setPageDetails)
     const shippingAddress = useSelector(state => state.shippingAddress);
     const cart = useSelector(state => state.cart);
     const cartTotal = useSelector(state => state.cartTotal)
-    const [paidFor, setPaidFor] = useState(false);
 
     const paypalButtons = () => {
         window.paypal.Buttons({
@@ -23,7 +26,7 @@ function Payment(props) {
             onApprove: async (data, actions) => {
                 const order = await actions.order.capture();
                 console.log(order);
-                setPaidFor(true);
+                OnPayment(cart, shippingAddress, props)
             },
             onError: err => {
                 console.log(err);
@@ -34,10 +37,13 @@ function Payment(props) {
 
     useEffect(() => paypalButtons(), [])
 
-    OnPayment(paidFor, cart, shippingAddress, props)
+    // OnPayment(paidFor, cart, shippingAddress, props)
 
     return (
-        <div className="container" id="paypal-button-container"></div>
+        <div className="Payment">
+            <PageBanner title={pageDetails.bannerTitle} caption={pageDetails.bannerText} />
+            <div className="container" id="paypal-button-container"></div>
+        </div>
 
     )
 }

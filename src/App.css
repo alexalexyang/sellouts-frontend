@@ -19,3 +19,7 @@
   outline: none;
   font-style: italic;
 }
+
+.AppImage {
+  max-width: 50%;
+}

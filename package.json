@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^13.4.0",
     "contentful": "^7.10.0",
     "dotenv": "^8.2.0",
     "emailjs-com": "^2.4.0",
