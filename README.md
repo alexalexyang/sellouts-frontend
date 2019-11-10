@@ -2,7 +2,7 @@
 
 JAMstack e-commerce platform with React, Contentful, EmailJS, and PayPal.
 
-Target demographic: people who have very little money but who still want to sell stuff online.
+Target demographic: people who have very little money but who still want to sell stuff online. That is, my friends and I.
 
 # Status
 
@@ -13,6 +13,14 @@ Target demographic: people who have very little money but who still want to sell
 [bean-dev](https://bean-dev.notathoughtexperiment.me). Deployed on Netlify.
 
 # Upcoming support
+
+## Priority
+
+- Update stock levels on Contentful upon purchases
+- Email both customer and team upon purchases
+- Write full documentation
+
+## Kinda less priority
 
 - International shipping
 - Holiday seasons and other special occasions
@@ -49,14 +57,20 @@ Paypal
 ## Environmental variables
 
 ```
+// Bootstrap 4
 REACT_APP_BOOTSTRAP
+
+// Contentful
 REACT_APP_SPACE_ID
 REACT_APP_CDA_TOKEN
+
 REACT_APP_PAYPAL_CLIENT_ID
 REACT_APP_DEFAULT_LANGUAGE
 ```
 
 ## Contentful
+
+This part is crucial but I will have to write about it later.
 
 ### Language
 
