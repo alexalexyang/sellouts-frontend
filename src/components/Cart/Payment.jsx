@@ -37,8 +37,6 @@ function Payment(props) {
 
     useEffect(() => paypalButtons(), [])
 
-    // OnPayment(paidFor, cart, shippingAddress, props)
-
     return (
         <div className="Payment">
             <PageBanner title={pageDetails.bannerTitle} caption={pageDetails.bannerText} />

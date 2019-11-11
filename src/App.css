@@ -20,6 +20,19 @@
   font-style: italic;
 }
 
-.AppImage {
-  max-width: 50%;
+.AppImage:hover {
+  transform: rotateY(180deg);
+}
+
+.ProductPic {
+  animation: rotation 400s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }

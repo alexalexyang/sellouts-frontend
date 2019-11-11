@@ -27,28 +27,23 @@ export default function Nav({ language }) {
                     {pages && Object.keys(pages).length > 0
                         ? pages.map(page => {
                             if (page.component !== "Home" && page.order !== -1) {
-                                return (<li className="nav-item">
+                                return (<li key={page.id} className="nav-item">
                                     <Link to={page.url} className="nav-link m-2 menu-item nav-active">{page.title}</Link>
                                 </li>)
                             }
+                            return null
                         }) : null}
                 </ul>
             </div>
-
 
             <div className="btn-group">
                 <button className="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {language}
                 </button>
                 <div className="dropdown-menu">
-                    {languages.map(lang => <button value={lang} className="dropdown-item" onClick={(e) => dispatch(setLanguage(e.target.value))}>{lang}</button>)}
+                    {languages.map(lang => <button key={lang.id} value={lang.language} className="dropdown-item" onClick={(e) => dispatch(setLanguage(e.target.value))}>{lang.language}</button>)}
                 </div>
             </div>
-
-
-
-
-
 
         </nav>
     )

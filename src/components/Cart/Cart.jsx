@@ -82,14 +82,16 @@ function Cart(props) {
                 )
             })
             }
+            <div className="container text-center">
+                <h3>Total: ${total}</h3>
 
-            <p>Total: ${total}</p>
+                <hr className="my-4" />
 
-
-            <button onClick={() => {
-                saveTotal(total)
-                props.history.replace('/cart/shipping')
-            }}>Go to payment</button>
+                <button className="btn btn-outline-secondary" onClick={() => {
+                    saveTotal(total)
+                    props.history.replace('/cart/shipping')
+                }}>Go to payment</button>
+            </div>
         </div>
     )
 }

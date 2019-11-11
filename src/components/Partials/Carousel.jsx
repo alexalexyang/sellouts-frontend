@@ -27,7 +27,7 @@ export default function Carousel({ pics }) {
                                 let indexPic = pics.indexOf(pic)
                                 return (
                                     <div key={pic.id} className={`carousel-item ` + (makeActive(indexPic))}>
-                                        <img src={`https://` + pic.url} className="d-block w-100" alt={pic.description}></img>
+                                        <img src={`https://` + pic.url} className="ProductPic d-block w-100" alt={pic.description}></img>
                                         <div className="carousel-caption d-none d-md-block">
                                             <h5>{pic.title}</h5>
                                             <p>{pic.description}</p>

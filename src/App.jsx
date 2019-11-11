@@ -23,9 +23,9 @@ function App() {
           {pages && Object.keys(pages).length > 0
             ? pages.map(page => {
               if (page.url.includes('cart')) {
-                return <Route path={page.url} exact component={require(`./components/Cart/${page.component}`).default} />
+                return <Route key={page.url} path={page.url} exact component={require(`./components/Cart/${page.component}`).default} />
               }
-              return <Route path={page.url} exact component={require(`./components/${page.component}`).default} />
+              return <Route key={page.url} path={page.url} exact component={require(`./components/${page.component}`).default} />
             })
             : null}
 

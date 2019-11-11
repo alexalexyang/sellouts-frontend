@@ -11,7 +11,7 @@ export default function GenericPage({ match }) {
     return (
         <div className="GenericPage">
             <PageBanner title={pageDetails.bannerTitle} caption={pageDetails.bannerText} />
-            <div className="GenericPageBody" dangerouslySetInnerHTML={{ __html: pageDetails.body }}>
+            <div className="GenericPageBody px-5 text-justify" dangerouslySetInnerHTML={{ __html: pageDetails.body }}>
 
             </div>
         </div>

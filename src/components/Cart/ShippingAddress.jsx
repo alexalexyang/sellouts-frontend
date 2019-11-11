@@ -24,7 +24,6 @@ function ShippingAddress(props) {
         <div className="ShippingAddress">
             <PageBanner title={pageDetails.bannerTitle} caption={pageDetails.bannerText} />
             <div className="text-muted text-left mx-5">
-                <h2>Shipping Address</h2>
                 <form onSubmit={onSubmit}>
                     <table>
                         <tbody>
@@ -118,7 +117,10 @@ function ShippingAddress(props) {
                             </tr>
                         </tbody>
                     </table>
-                    <input type="submit" value="Submit" />
+                    <div>
+                        <hr className="my-4" />
+                        <input type="submit" className="btn btn-outline-secondary" value="Submit" />
+                    </div>
                 </form>
             </div>
         </div>

@@ -5,10 +5,10 @@ import UpdateUnits from './UpdateUnits';
 import { useGetPageDetails } from '../DBHandlers/GetPageDetails';
 import GetOneProduct from '../DBHandlers/GetOneProduct'
 
-export default function Product({ match }) {
-    const itemID = match.params.id
+export default function Product(props) {
+    const itemID = props.match.params.id
     const [pageDetails, setPageDetails] = useState({})
-    useGetPageDetails(match.path, setPageDetails)
+    useGetPageDetails(props.match.path, setPageDetails)
     const [product, setProduct] = useState({})
     GetOneProduct(itemID, setProduct)
 
@@ -19,11 +19,11 @@ export default function Product({ match }) {
                 <div className="ProductPics col-sm-6 col-12">
                     <Carousel pics={product.pics} />
                 </div>
-                <div className="ProductText d-flex flex-column col-sm-6 col-12 px-4">
+                <div className="ProductText d-flex flex-column col-sm-6 col-12">
                     {pageDetails.misc && Object.keys(pageDetails.misc).length > 0 ?
                         (
-                            <div className="ProductText mt-3 mt-sm-0 mb-4">
-                                <p className="text-muted text-sm-left text-center">{product.body}</p>
+                            <div className="ProductText mt-3 mt-sm-0 mb-4 px-4">
+                                <p className="text-muted text-justify" dangerouslySetInnerHTML={{ __html: product.description }}></p>
                                 <p className="text-muted text-sm-left text-center">{pageDetails.misc.price}: ${product.price}</p>
                                 {product.discount && product.discount > 0 ? <p className="text-muted text-sm-left text-center">{pageDetails.misc.discount}: {product.discount}%</p> : null}
                                 <p className="text-muted text-sm-left text-center">{pageDetails.misc.stock}: {product.stock}</p>
@@ -32,6 +32,12 @@ export default function Product({ match }) {
                             </div>
                         ) : null}
                     <UpdateUnits itemID={itemID} product={product} />
+                </div>
+                <div className="container text-center">
+                    <hr className="my-4" />
+                    <button className="btn btn-outline-secondary" onClick={() => {
+                        props.history.replace('/cart')
+                    }}>Go to cart</button>
                 </div>
             </div >
         </div >

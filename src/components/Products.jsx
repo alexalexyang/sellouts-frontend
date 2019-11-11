@@ -14,7 +14,7 @@ export default function Products({ match }) {
     GetProducts()
 
     return (
-        <div className="">
+        <div className="ProductsPage">
             <PageBanner title={pageDetails.bannerTitle} caption={pageDetails.bannerText} />
             <div className="Products container-fluid">
                 <div className="d-flex align-content-stretch justify-content-center flex-column flex-md-row">

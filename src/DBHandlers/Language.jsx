@@ -21,7 +21,7 @@ export const useGetLanguages = () => {
 
     useEffect(() => {
         if (languages.length > 0) {
-            return languages
+            return
         }
         ContentfulClient.getEntries({
             content_type: 'languages',
@@ -30,7 +30,11 @@ export const useGetLanguages = () => {
             .then((response) => {
                 let langsObj = []
                 response.items.map(item => {
-                    langsObj.push(item.fields.language)
+                    let langObj = {}
+                    langObj["language"] = item.fields.language
+                    langObj["id"] = item.sys.id
+                    langsObj.push(langObj)
+                    return langObj
                 })
                 dispatch(setLanguages(langsObj))
             })

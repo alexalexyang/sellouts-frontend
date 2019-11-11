@@ -16,7 +16,7 @@ export const useGetPages = () => {
                 let pages = []
                 response.items.map(item => {
                     item.fields["id"] = item.sys.id
-                    pages.push(item.fields)
+                    return pages.push(item.fields)
                 })
                 pages = pages.sort((a, b) => a.order - b.order)
                 dispatch(getPages(pages))

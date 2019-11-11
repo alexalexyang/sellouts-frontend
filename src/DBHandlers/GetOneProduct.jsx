@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { ContentfulClient } from './ContentfulClient'
-
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 export default function GetOneProduct(itemID, setProduct) {
     const language = useSelector(state => state.language)
@@ -14,6 +14,17 @@ export default function GetOneProduct(itemID, setProduct) {
         })
             .then((response) => {
                 let item = response.items[0].fields;
+
+                let options = {
+                    renderNode: {
+                        'embedded-asset-block': (node) =>
+                            `<img class="AppImage img-fluid" src="${node.data.target.fields.file.url}"/>`
+                    }
+                }
+
+                const rawRichTextField = response.items[0].fields.description
+                const renderedHtml = documentToHtmlString(rawRichTextField, options)
+
                 let pics = [];
                 item.pictures ?
                     item.pictures.map(pic => {
@@ -36,11 +47,11 @@ export default function GetOneProduct(itemID, setProduct) {
                     stock: item.quantity,
                     category: item.category,
                     subcategory: item.subcategory,
-                    description: item.description.content[0].content[0].value,
+                    description: renderedHtml,
                     pics: pics
                 }
-                setProduct(product)
 
+                setProduct(product)
             })
             .catch(console.error)
     }, [language])
