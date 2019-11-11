@@ -1,5 +1,1 @@
-/product/*     /product/:splat
-/products      /products
-/cart          /cart
-/about         /about
-/              /
+/*    /index.html   200
