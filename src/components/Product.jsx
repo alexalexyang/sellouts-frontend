@@ -23,7 +23,7 @@ export default function Product({ match }) {
                     {pageDetails.misc && Object.keys(pageDetails.misc).length > 0 ?
                         (
                             <div className="ProductText mt-3 mt-sm-0 mb-4">
-                                <p className="text-muted text-sm-left text-center">{product.description}</p>
+                                <p className="text-muted text-sm-left text-center">{product.body}</p>
                                 <p className="text-muted text-sm-left text-center">{pageDetails.misc.price}: ${product.price}</p>
                                 {product.discount && product.discount > 0 ? <p className="text-muted text-sm-left text-center">{pageDetails.misc.discount}: {product.discount}%</p> : null}
                                 <p className="text-muted text-sm-left text-center">{pageDetails.misc.stock}: {product.stock}</p>
