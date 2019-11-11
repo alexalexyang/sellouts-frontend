@@ -1,5 +1,5 @@
-/              /
-/about         /about
+/product/*     /product/:splat
 /products      /products
-/product id:id /product/:id
 /cart          /cart
+/about         /about
+/              /
