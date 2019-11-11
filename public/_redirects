@@ -1,0 +1,5 @@
+/              /
+/about         /about
+/products      /products
+/product id:id /product/:id
+/cart          /cart
